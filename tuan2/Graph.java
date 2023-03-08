@@ -1,4 +1,4 @@
-package tuan1;
+package tuan2;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -78,6 +78,8 @@ public abstract class Graph {
             }
         }
     }
+    
+    
 
     // Duyệt đồ thị theo chiều sâu (DFS)
     public void DFS(int startVertex) {
@@ -95,6 +97,27 @@ public abstract class Graph {
             }
         }
     }
+    // kiểm tra đường đi từ đỉnh x đến đỉnh y cho trước hay không
+    public boolean hasPathBFS(int x, int y) {
+        Queue<Integer> queue = new LinkedList<Integer>();
+        boolean[] visited = new boolean[V];
+        queue.add(x);
+        visited[x] = true;
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            if (v == y) {
+                return true;
+            }
+            for (int i = 0; i < V; i++) {
+                if (adjMatrix[v][i] != 0 && !visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 }
 
